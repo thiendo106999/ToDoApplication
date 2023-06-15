@@ -1,0 +1,10 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:centerColor="@color/btn_delete"
+        android:startColor="@color/btn_delete"
+        android:endColor="@color/btn_delete"
+        android:type="linear" />
+    <corners android:radius="8dp"/>
+</shape>

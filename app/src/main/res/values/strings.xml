@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToDoApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="task_list">Todo task list</string>
+    <string name="task_name">Task name</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="create">create</string>
+    <string name="create_new_task">Create new task</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="task_detail">Task detail</string>
+    <string name="task_edit">Edit task</string>
+</resources>
