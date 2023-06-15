@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,6 +19,8 @@ import com.example.todoapplication.ui.task.MainActivity;
 import com.example.todoapplication.ui.task.detail.TaskDetailFragment;
 import com.example.todoapplication.ui.task.main.TaskListFragment;
 import com.example.todoapplication.utils.FragmentTag;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,7 +54,7 @@ public class TaskEditFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnBack.setOnClickListener(v -> {
             if (MainActivity.TASK_FRAGMENT_TAG == FragmentTag.LIST_FRAGMENT_TAG) {
@@ -82,14 +83,11 @@ public class TaskEditFragment extends Fragment {
         });
 
         btnCalendar.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.CANADA);
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(i, i1, i2);
-                    edtDate.setText(simpleDateFormat.format(calendar.getTime()));
-                }
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (datePicker, i, i1, i2) -> {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.CANADA);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(i, i1, i2);
+                edtDate.setText(simpleDateFormat.format(calendar.getTime()));
             }, 2023, 6, 12);
             datePickerDialog.show();
         });

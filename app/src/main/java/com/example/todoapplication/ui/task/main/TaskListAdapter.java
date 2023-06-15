@@ -51,6 +51,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ToDoVi
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
+    @Override
     public int getItemCount() {
         if (tasks == null) {
             return 0;
