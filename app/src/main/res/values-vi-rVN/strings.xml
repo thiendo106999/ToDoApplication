@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDoApplication</string>
+    <string name="task_list">Danh sách nhiệm vụ</string>
+    <string name="task_name">Tên nhiệm vụ</string>
+    <string name="date">Ngày</string>
+    <string name="description">Mô tả</string>
+    <string name="create">tạo</string>
+    <string name="create_new_task">Tạo nhiệm vụ mới</string>
+    <string name="edit">Chỉnh sửa</string>
+    <string name="delete">Xóa</string>
+    <string name="task_detail">Chi tiết nhiệm vụ</string>
+    <string name="task_edit">Điều chỉnh nhiệm vụ</string>
+    <string name="create_success">Tạo thành công</string>
+    <string name="update_success">Cập nhật thành công</string>
+    <string name="delete_success">Xóa thành công</string>
+</resources>

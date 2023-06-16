@@ -22,6 +22,9 @@ public class Task implements Serializable {
     private String date;
     private String description;
 
+    public Task() {
+    }
+
     public Task(String name, String date, String description) {
         this.name = name;
         this.date = date;
@@ -58,5 +61,15 @@ public class Task implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
