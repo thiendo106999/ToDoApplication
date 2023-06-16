@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -53,6 +54,7 @@ public class TaskDetailFragment extends Fragment {
 
         btnDelete.setOnClickListener(v -> {
             TaskDatabase.getInstance(getContext()).taskDAO().deleteTaskById(task.getId());
+            Toast.makeText(requireActivity(), getResources().getText(R.string.delete_success), Toast.LENGTH_SHORT).show();
             ((MainActivity) requireActivity()).switchContent(R.id.fragment, new TaskListFragment());
         });
 

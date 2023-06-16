@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.todoapplication.R;
 import com.example.todoapplication.data.database.TaskDatabase;
 import com.example.todoapplication.data.models.Task;
+import com.example.todoapplication.data.remote.AppApi;
 import com.example.todoapplication.ui.task.MainActivity;
 import com.example.todoapplication.ui.task.detail.TaskDetailFragment;
 import com.example.todoapplication.ui.task.main.TaskListFragment;
@@ -32,6 +34,13 @@ public class TaskEditFragment extends Fragment {
     private ImageButton btnCalendar;
     private EditText edtTaskName, edtDate, edtDescription;
     private Task task;
+    private AppApi appApi;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        appApi = AppApi.getInstance();
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,15 +80,27 @@ public class TaskEditFragment extends Fragment {
             Task newTask = new Task(taskName, date, description);
             newTask.setId(task.getId());
 
-            TaskDatabase.getInstance(getContext())
-                    .taskDAO()
-                    .update(newTask);
+//            TaskDatabase.getInstance(getContext())
+//                    .taskDAO()
+//                    .update(newTask);
 
-            if (MainActivity.TASK_FRAGMENT_TAG == FragmentTag.LIST_FRAGMENT_TAG) {
-                ((MainActivity) requireActivity()).switchContent(R.id.fragment, new TaskListFragment());
-            } else {
-                ((MainActivity) requireActivity()).fragmentJump(newTask, new TaskDetailFragment());
-            }
+            appApi.createTask(requireActivity(), new AppApi.ApiResponseListener() {
+                @Override
+                public void onResponse(Object o) {
+                    Toast.makeText(requireActivity(), getResources().getText(R.string.update_success), Toast.LENGTH_SHORT).show();
+
+                    if (MainActivity.TASK_FRAGMENT_TAG == FragmentTag.LIST_FRAGMENT_TAG) {
+                        ((MainActivity) requireActivity()).switchContent(R.id.fragment, new TaskListFragment());
+                    } else {
+                        ((MainActivity) requireActivity()).fragmentJump(newTask, new TaskDetailFragment());
+                    }
+                }
+
+                @Override
+                public void onErrorResponse(String errorMessage) {
+
+                }
+            }, newTask);
         });
 
         btnCalendar.setOnClickListener(v -> {
